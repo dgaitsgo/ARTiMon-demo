@@ -184,7 +184,7 @@ public float calcBodyTemp(float elevation, float hydration, float heartRate) {
 While this may seem like just a bunch of magic numbers, and ultimately they are, they do come from a method. We first defined the variables we wanted to take into consideration that would effect the body temperature and then plotted them onto a graph with x as time. With a lot of tinkering, The idea was to find a curve that would be manageable for the player to respond to the fluctuations in their character's vitals and the alerts they might raise.
 
 
-![Image](https://i.imgur.com/TzJuUQz.gif)
+![Image](https://i.imgur.com/KEXRSy0.png)
 
 
 **Communication**
