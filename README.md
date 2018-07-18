@@ -267,7 +267,7 @@ while (1) {
 ![Image](https://i.imgur.com/3prfLmH.png)
 
 
-Here we can see our character in peril and the beautifully crafter joystick and menu button to control them.
+Here we can see our character in peril and the beautifully crafted joystick and menu button to control them.
 
 
 ![Image](https://i.imgur.com/6fiELJM.png)
