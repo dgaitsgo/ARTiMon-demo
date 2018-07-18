@@ -13,7 +13,7 @@ Anaëlle Zouari, Developer, aazouari@student.42.fr
 
 
 Under the direction
-Aline Caranicolas, Industry Parternships, aline.caranicolas@cea.fr
+Aline Caranicolas, Industry Partnerships, aline.caranicolas@cea.fr
 David Mercier, Head of Innovation at LIST Institut de CEA Tech, david.mercier@cea.fr
 Nicolas Rapin, Researcher in Formal Methods, nicolas.rapin@cea.fr
 
@@ -23,7 +23,7 @@ As the world leader in patent filings amongst any public research organisation, 
 
 
 ## What is ARTiMon?
-> Artimon is a technology that serves two purposes. Specify behaviours in real time and then analyse them. Artimon offers a language to easily express temporality. It allows the conciever, from a very high level, to express temporal constraints in a declarative, textual language that is quite close to natural language. Therefore, it allows the synthesis of automatic monitoring of a sytem and decide if it respects the constraints in real time.
+> Artimon is a technology that serves two purposes. Specify behaviours in real time and then analyse them. Artimon offers a language to easily express temporality. It allows the conceiver, from a very high level, to express temporal constraints in a declarative, textual language that is quite close to natural language. Therefore, it allows the synthesis of automatic monitoring of a system and decide if it respects the constraints in real time.
 
 *- Nicolas Rapin, Principle designer of ARTiMon*
 
@@ -31,22 +31,22 @@ As the world leader in patent filings amongst any public research organisation, 
 ![Image](https://i.imgur.com/7qg27fh.png)
 
 
-Monitoring the behavior in real-time of mission-critical systems is a complex task. It can often lead to code bases so dense, they become hard to test for dependable behavior. This is more often than not because languages are not designed to explicity express temporality despite being a fundemental way humans concieve rules and constraints. ARTiMon shifts the field by offering a language where its primary operators are temporal.
+Monitoring the behavior in real-time of mission-critical systems is a complex task. It can often lead to code bases so dense, they become hard to test for dependable behavior. This is more often than not because languages are not designed to explicitly express temporality despite being a fundamental way humans conceive rules and constraints. ARTiMon shifts the field by offering a language where its primary operators are temporal.
 
 
 ## Our Mission
-Our mission was to communicate to decision makers and the public the major steps the CEA has taken in making the real-time monitoring of critical systems more ergonomic in an engaing demo.
+Our mission was to communicate to decision makers and the public the major steps the CEA has taken in making the real-time monitoring of critical systems more ergonomic in an engaging demo.
 
 
 ## Approach
-After the exploration of several prototypes, we decided that the most effective way to give a user who is not versed in a niche technical subject would be an interactive game where they play a soldier undress distress and must safely get to an extraction point while managing their vitals. Users are explained the rules they will have to follow and shown them expressed in ARTiMon to compare the similarity. The user has three points of interaction: a screen where a third-person character is in a dynamic environment, an arcade style joystick to control the character and toggle through menus, and a wearable technology that allows them to recieve alerts from ARTiMon.
+After the exploration of several prototypes, we decided that the most effective way to give a user who is not versed in a niche technical subject would be an interactive game where they play a soldier undress distress and must safely get to an extraction point while managing their vitals. Users are explained the rules they will have to follow and shown them expressed in ARTiMon to compare the similarity. The user has three points of interaction: a screen where a third-person character is in a dynamic environment, an arcade style joystick to control the character and toggle through menus, and a wearable technology that allows them to receive alerts from ARTiMon.
 ## Stack
 
 
 **ARTiMon**
 
 
-ARTiMon is a new language with a set of unique symbols and operators to express temporal logic. Here is a simple example from the game of a variable that must be managed for succesful completion.
+ARTiMon is a new language with a set of unique symbols and operators to express temporal logic. Here is a simple example from the game of a variable that must be managed for successful completion.
 
 ```
 *
@@ -54,7 +54,7 @@ ARTiMon is a new language with a set of unique symbols and operators to express 
 //execution of the program 
 heartRate
 *
-//Next, we declare contraints and their paramaters related to what will
+//Next, we declare contraints and their parameters related to what will
 //be monitored. In this case, we declare a maximum, a range and a
 //comparative value to describe when the heartRate is too high.
  
@@ -64,7 +64,7 @@ elevatedHeartRate = '>' heartRateRange
 
 *
 //Finally its time declare what alerts will be produced when exceeding
-//certain thresholds. Alerts escelate in degree if the our heartRate is
+//certain thresholds. Alerts escalate in degree if the our heartRate is
 //elevated for 3, 7 and 10 seconds. This is the monitoring stage.
 // hazards & warnings :green (default) - yellow, orange, red
 () yellow_HeartRate = Top (G[0, 3] elevatedHeartRate)
@@ -99,7 +99,7 @@ Next we use its position and rotation to place our camera:
 ```csharp
 /*
     offsetFromTarget world is a constant that gives a natural
-    distance between the screen and the character.
+    distance betwee the screen and the character.
 */
 void MoveToTarget() {
 	destination = move.TargetRotation * offsetFromTarget;
@@ -109,7 +109,7 @@ void MoveToTarget() {
 ```
 
 
-Unity has a very flexible API that allows easy conversion between euler angles and quaternions which should ultimately define transformations to avoid gimbal lock.
+Unity has a very flexible API that allows easy conversion between Euler angles and quaternions which should ultimately define transformations to avoid gimbal lock.
 
 ```csharp
 void LookAtTarget() {
@@ -203,7 +203,7 @@ public void	setupSendSocket() {
 	//error handling
 }
 
-//All of our data was seprated into a comma seperated string
+//All of our data was a comma separated string
 public void writeToSocket(String s)
 {
 	sendSock.writer.Write (s);
@@ -218,7 +218,7 @@ public void writeToSocket(String s)
 ![Image](https://i.imgur.com/BYrVNIJ.jpg)
 
 
-Our RaspberryPi was configured to do several tasks: run the ARTiMon executable, host the network that would allow data transfer and be a werable device a user can interact with through alerts and touch. To get data into ARTiMon, we launched an executable that included an interface to the monitoring system which ran as a child process:
+Our RaspberryPi was configured to do several tasks: run the ARTiMon executable, host the network that would allow data transfer and be a wearable device a user can interact with through alerts and touch. To get data into ARTiMon, we launched an executable that included an interface to the monitoring system which ran as a child process:
 
 
 
