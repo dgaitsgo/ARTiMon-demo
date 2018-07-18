@@ -24,6 +24,7 @@ As the world leader in patent filings amongst any public research organisation, 
 
 ## What is ARTiMon?
 > Artimon is a technology that serves two purposes. Specify behaviours in real time and then analyse them. Artimon offers a language to easily express temporality. It allows the conciever, from a very high level, to express temporal constraints in a declarative, textual language that is quite close to natural language. Therefore, it allows the synthesis of automatic monitoring of a sytem and decide if it respects the constraints in real time.
+
 *- Nicolas Rapin, Principle designer of ARTiMon*
 
 
