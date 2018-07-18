@@ -5,14 +5,14 @@
 Partnership École42-STRATE-CEA
 
 
-undefinedCore teamundefined
+Core team
 David Gaitsgory, Developer, dgaitsgory@student.42.fr
 Paul Gibert, Designer, p.denisgibert@strate.design
 Olivier Tousche, Designer, o.tousche@strate.design
 Anaëlle Zouari, Developer, aazouari@student.42.fr
 
 
-undefinedUnder the directionundefined
+Under the direction
 Aline Caranicolas, Industry Parternships, aline.caranicolas@cea.fr
 David Mercier, Head of Innovation at LIST Institut de CEA Tech, david.mercier@cea.fr
 Nicolas Rapin, Researcher in Formal Methods, nicolas.rapin@cea.fr
@@ -47,29 +47,29 @@ After the exploration of several prototypes, we decided that the most effective 
 
 ARTiMon is a new language with a set of unique symbols and operators to express temporal logic. Here is a simple example from the game of a variable that must be managed for succesful completion.
 
-
-undefined*
-undefined//Here, we declare variables which will be monitored during the
-undefined//execution of the program 
+```
+*
+//Here, we declare variables which will be monitored during the
+//execution of the program 
 heartRate
 *
-undefined//Next, we declare contraints and their paramaters related to what will
-undefined//be monitored. In this case, we declare a maximum, a range and a
-undefined//comparative value to describe when the heartRate is too high.
-undefined 
+//Next, we declare contraints and their paramaters related to what will
+//be monitored. In this case, we declare a maximum, a range and a
+//comparative value to describe when the heartRate is too high.
+ 
 maxHeartRate = 'double_cst' 187
 heartRateRange[2] heartRate maxHeartRate
 elevatedHeartRate = '>' heartRateRange
 
 *
-undefined//Finally its time declare what alerts will be produced when exceeding
-undefined//certain thresholds. Alerts escelate in degree if the our heartRate is
-undefined//elevated for 3, 7 and 10 seconds. This is the monitoring stage.
-undefined// hazards & warnings :green (default) - yellow, orange, red
+//Finally its time declare what alerts will be produced when exceeding
+//certain thresholds. Alerts escelate in degree if the our heartRate is
+//elevated for 3, 7 and 10 seconds. This is the monitoring stage.
+// hazards & warnings :green (default) - yellow, orange, red
 () yellow_HeartRate = Top (G[0, 3] elevatedHeartRate)
 () orange_HeartRate = (G[0, 7] elevatedHeartRate)
 () red_heartRate = G[0, 10] elevatedHeartRate
-
+```
 
 These rules can be aggregated to create complex interdependent temporal rules without losing its declerative approach.
 
