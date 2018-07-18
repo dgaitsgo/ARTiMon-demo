@@ -74,7 +74,7 @@ elevatedHeartRate = '>' heartRateRange
 () red_heartRate = G[0, 10] elevatedHeartRate
 ```
 
-These rules can be aggregated to create complex interdependent temporal rules without losing its declerative approach.
+These rules can be aggregated to create complex interdependent temporal rules without losing its declarative approach.
 
 
 **Unity**
@@ -101,7 +101,7 @@ Next we use its position and rotation to place our camera:
 ```csharp
 /*
     offsetFromTarget world is a constant that gives a natural
-    distance betwee the screen and the character.
+    distance between the screen and the character.
 */
 void MoveToTarget() {
 	destination = move.TargetRotation * offsetFromTarget;
@@ -267,7 +267,7 @@ while (1) {
 ![Image](https://i.imgur.com/3prfLmH.png)
 
 
-Here we can see our character in peril and the beautifuly crafter joystick and menu button to control them.
+Here we can see our character in peril and the beautifully crafter joystick and menu button to control them.
 
 
 ![Image](https://i.imgur.com/6fiELJM.png)
