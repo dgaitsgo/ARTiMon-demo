@@ -21,7 +21,7 @@ Nicolas Rapin, Researcher in Formal Methods, nicolas.rapin@cea.fr
 
 
 ## Background
-As the world leader in patent filings amongst any public research organisation, the CEA is a vital bridge between cutting edge applied research and industry implementations. In order to attract new investment and public interest, the organisation displays its technical prowess in a mind blowing demo room in Saclay, France. Students at the Srate School of Design and École42 were brought together to help advance their outreach mission by creating demos that hook potential industry partners and popularise their scientific research. Our core team created a demo for ARTiMon.
+As the world leader in patent filings amongst any public research organisation, the CEA is a vital bridge between cutting edge applied research and industry implementations. In order to attract new investment and public interest, the organisation displays its technical prowess in a stunning demo room in Saclay, France. Students at the STRATE School of Design and École42 were brought together to help advance their outreach mission by creating demos that hook potential industry partners and popularise their scientific research. Our core team created a demo for ARTiMon.
 
 
 ## What is ARTiMon?
