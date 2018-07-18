@@ -1,0 +1,178 @@
+enemy_spotted
+athz_to_continue
+flex
+*
+heartRate
+bodyTemp
+glucoseLevel
+hydration
+oxygen
+flexions
+*
+//requirements:
+
+	// ******* heart rate ******* //
+
+heartRate110_DBL = 'double_cst' 110
+heartRate110_V2[2] heartRate heartRate110_DBL
+heartRate_over_110 = '>' heartRate110_V2
+
+heartRate150_DBL = 'double_cst' 150
+heartRate150_V2[2] heartRate heartRate150_DBL
+heartRate_under_150 = '<' heartRate150_V2
+
+maxHeartRate = 'double_cst' 187
+heartRateRange[2] heartRate maxHeartRate
+dangerousHeartRate = '>' heartRateRange
+
+dangerousHeartRate_for_5s = (G[0, 5] dangerousHeartRate)
+
+	// ******* body temperature ******* //
+
+minBodyTempDBL = 'double_cst' 35
+lowBodyTempDBL = 'double_cst' 36
+highBodyTempDBL = 'double_cst' 37
+maxBodyTempDBL = 'double_cst' 39
+
+minBodyTempV2[2] bodyTemp minBodyTempDBL
+lowBodyTempV2[2] bodyTemp lowBodyTempDBL
+highBodyTempV2[2] bodyTemp highBodyTempDBL
+maxBodyTempV2[2] bodyTemp maxBodyTempDBL
+
+lessThanMinBodyTemp = '<' minBodyTempV2
+lowBodyTemp = '<' lowBodyTempV2
+highBodyTemp = '>' maxBodyTempV2
+moreThanMaxBodyTemp = '>' maxBodyTempV2
+
+	// ******* glucose ******* //
+
+minGlucoseLevel = 'double_cst' 50
+maxGlucoseLevel = 'double_cst' 124
+lowGlucoseLevelV2[2] glucoseLevel minGlucoseLevel
+highGlucoseLevelV2[2] glucoseLevel maxGlucoseLevel
+tooLowGlucose = '<' lowGlucoseLevelV2
+tooHighGlucose = '>' highGlucoseLevelV2
+
+	// ******* hydration ******* //
+
+minHydration = 'double_cst' 90
+hydrationLowV2[2] hydration minHydration
+tooLowHydration = '<' minHydration
+
+maxHydration = 'double_cst' 100
+hydrationHighV2[2] hydration maxHydration
+tooHighHydration = '>' maxHydration
+
+hydrationSafeValue = 'double_cst' 95
+hydrationSafeVector[2] hydration hydrationSafeValue
+hydrationSafe = '>' hydrationSafeVector
+
+tooLowHydration_start = Top tooLowHydration
+
+	// ******* flexions ******* //
+
+maxFlexions = 'double_cst' 40
+flexionsV2[2] flexions maxFlexions
+tooHighFlexions = '>' flexionsV2
+
+//# converts booleans to int 0, 1
+flex_int = # flex
+nb_flex_per_min = A{'sum'}[0, 5] flex_int
+
+	// ******* oxygen ******* //
+safe_oxygen_level = 'double_cst' 90
+oxygen_level_compare[2] oxygen safe_oxygen_level
+tooLowOxygenLevel = '<' oxygen_level_compare
+
+	// ******* hybrid    ******* //
+
+req_hydration_low = tooLowHydration_start -> (heartRate_under_150 U[0,10] hydrationSafe)
+
+// for hazard: more than 3 high heart beat rate for 5s over one minute
+
+	peak_start = # (Top dangerousHeartRate_for_5s)
+	heart_pic_rate_vec[2] (A{'sum'}[0,60] peak_start)  ('double_cst' 4)
+	heart_pic_rate_vec_warn[2] (A{'sum'}[0,30] peak_start)  ('double_cst' 2)
+
+
+* // start of hazards and warnings section
+
+
+
+//******************** Combined ***********************//
+
+// hydratation low and heart rate too high for 10s
+
+	haz_highHeartRateNoWater = G[0, 10] ((! heartRate_under_150) & tooLowHydration) 			%Hydratation Low and Big Effort for too long%
+	(haz_highHeartRateNoWater) tooFastTooDehydrated = G[0, 5] ((! heartRate_under_150) & tooLowHydration)  	%Hydratation Low and Big Effort%
+
+// after enemy spotted move without authorization to move again
+// give 3 seconds to stop after enemy spotted
+
+	haz_step_wo_athz = flex & (!athz_to_continue S[3, >] enemy_spotted)  				%Move with no Auth after Enemy Spotted%
+	(haz_step_wo_athz) beenMade = enemy_spotted 							%Enemy Spotted!%
+
+
+//  more than 5s in enemy area or return within 3s in enemy area
+
+	haz_enemy_area = (G[-5,0] enemy_spotted) | ((Top enemy_spotted) & (E[-3,0] (Bot enemy_spotted))) %Too long or frequently in Enemy Area%
+
+
+//  body temp is low and no atempt to warm within 10s
+
+	haz_coldNoMotion = lowBodyTemp & (G[0, 10] (! heartRate_over_110)) 				%It's COLD and you didn't MOVE yourself%
+	(haz_coldNoMotion) tooColdNotMovingFastEnough = lowBodyTemp & (G[0, 5] (! heartRate_over_110))	%It's COLD, MOVE !%
+
+
+//******************** Heart Rate Peak (illustration of Aggregation use) ***********************//
+
+
+// More than 3 high heart beat rate for 5s over one minute
+	haz_heart_pic_rate = '>' heart_pic_rate_vec   						%Too many Heart Rate Peaks !%
+	(haz_heart_pic_rate) warn_haz_heart_pic_rate = Top( '>' heart_pic_rate_vec_warn  ) 	%Too many Heart Rate Peaks!%
+
+
+//****************** Basic limits Hazards   *****************//
+
+
+	haz_bodyTempHigherThanMax = moreThanMaxBodyTemp  			%Your Body Temp has reached a HOT lethal level%
+	haz_bodyTempLowerThanMin = lessThanMinBodyTemp  			%Your Body Temp has reached a COLD lethal level%
+
+
+//****************** basic: gradual *****************//
+
+haz_redHeartRate = G[0, 15] dangerousHeartRate 					%Dangerous Heart Rate for 15s%
+(haz_redHeartRate) orange_HeartRate = G[0, 10] dangerousHeartRate 		%Dangerous Heart Rate for at least 10s%
+(haz_redHeartRate) yellow_HeartRate = dangerousHeartRate_for_5s 		%Dangerous Heart Rate for at least 5s%
+
+haz_redBodyTempLow = G[0, 15] lowBodyTemp 					%Body Temp Low for 15s%
+(haz_redBodyTempLow) orange_lowBodyTemp = G[0, 10] lowBodyTemp 			%Dangerous Low Body Temp for at least 10s%
+(haz_redBodyTempLow) yellow_lowBodyTemp = G[0, 5] lowBodyTemp 			%Dangerous Low Body Temp for at least 5s%
+
+haz_redBodyTempHigh = G[0, 15] highBodyTemp 					%Body Temp High for 15s%
+(haz_redBodyTempLow) orange_highBodyTemp = G[0, 10] highBodyTemp  		%Dangerous High Body Temp for at least 10s%
+(haz_redBodyTempLow) yellow_highBodyTemp = G[0, 5] highBodyTemp 		%Dangerous High Body Temp for at least 5s%
+
+haz_redGlucoseLow = G[0, 15] tooLowGlucose 					%Glucose too LOW for 15s%
+(haz_redGlucoseLow) orange_lowGlucoseLevel =  G[0, 10] tooLowGlucose		%Dangerous LOW Glucose for at least 10s%
+(haz_redGlucoseLow) yellow_lowGlucoseLevel = (G[0, 5] tooLowGlucose)		%Dangerous LOW Glucose for at least 5s%
+
+haz_redGlucoseHigh = G[0, 15] tooHighGlucose					%Glucose too HIGH for 15s%
+(haz_redGlucoseHigh) orange_highGlucoseLevel = (G[0, 10] tooHighGlucose) 	%Dangerous HIGH Glucose for at least 10s%
+(haz_redGlucoseHigh) yellow_highGlucoseLevel = (G[0, 5] tooHighGlucose) 	%Dangerous HIGH Glucose for at least 5s%
+
+haz_redHydrationLow = G[0, 15] tooLowHydration 					%Hydration too LOW for 15s%
+(haz_redHydrationLow) orange_lowHydrationLevel = (G[0, 10] tooLowHydration) 	%Dangerous LOW Hydration for at least 10s%
+(haz_redHydrationLow) yellow_lowHydrationLevel = (G[0, 5] tooLowHydration)	%Dangerous LOW Hydration for at least 5s%
+
+haz_redHydrationHigh = G[0, 15] tooHighHydration				%Hydration too HIGH for 15s%
+(haz_redHydrationHigh) orange_highHydrationLevel = (G[0, 10] tooHighHydration)	%Dangerous HIGH Hydration for at least 10s%
+(haz_redHydrationHigh) yellow_highHydrationLevel = (G[0, 5] tooHighHydration)	%Dangerous HIGH Hydratin for at least 5s%
+
+haz_redFlexions = G[0, 15] tooHighFlexions					%Flexions too HIGH for 15s%
+(haz_redFlexions) orange_highFlexions = (G[0, 10] tooHighFlexions)		%Dangerous HIGH flexions for at least 5s%
+(haz_redFlexions) yellow_highFlexions = (G[0, 5] tooHighFlexions)		%Dangerous HIGH flexions for at least 10s%
+
+haz_redLowOxygenLevel = G[0, 15] tooLowOxygenLevel 				%Oxygen too LOW for 15s%
+(haz_redLowOxygenLevel) orange_lowOxygenLevel = (G[0, 10] tooLowOxygenLevel)	%Dangerous LOW Oxygen for at least 10s%
+(haz_redLowOxygenLevel) yellow_lowOxygenLevel = (G[0, 5] tooLowOxygenLevel)	%Dangerous LOW Oxygen for at least 5s%
