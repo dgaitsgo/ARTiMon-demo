@@ -41,7 +41,7 @@ Our mission was to communicate to decision makers and the public the major steps
 
 
 ## Approach
-After the exploration of several prototypes, we decided that the most effective way to give a user who is not versed in a niche technical subject would be an interactive game where they play a soldier undress distress and must safely get to an extraction point while managing their vitals. Users are explained the rules they will have to follow and shown them expressed in ARTiMon to compare the similarity. The user has three points of interaction: a screen where a third-person character is in a dynamic environment, an arcade style joystick to control the character and toggle through menus, and a wearable technology that allows them to receive alerts from ARTiMon.
+After the exploration of several prototypes, we decided that the most effective way to give a user who is not versed in a niche technical subject would be an interactive game where they play a soldier under distress and who must safely get to an extraction point while managing their vitals. Users are explained the rules they will have to follow and shown them expressed in ARTiMon to compare the similarity. The user has three points of interaction: a screen where a third-person character is in a dynamic environment, an arcade style joystick to control the character and toggle through menus, and a wearable technology that allows them to receive alerts from ARTiMon.
 ## Stack
 
 
@@ -56,7 +56,7 @@ ARTiMon is a new language with a set of unique symbols and operators to express 
 //execution of the program 
 heartRate
 *
-//Next, we declare contraints and their parameters related to what will
+//Next, we declare constraints and their parameters related to what will
 //be monitored. In this case, we declare a maximum, a range and a
 //comparative value to describe when the heartRate is too high.
  
@@ -66,7 +66,7 @@ elevatedHeartRate = '>' heartRateRange
 
 *
 //Finally its time declare what alerts will be produced when exceeding
-//certain thresholds. Alerts escalate in degree if the our heartRate is
+//certain thresholds. Alerts escalate in degree if the heartRate is
 //elevated for 3, 7 and 10 seconds. This is the monitoring stage.
 // hazards & warnings :green (default) - yellow, orange, red
 () yellow_HeartRate = Top (G[0, 3] elevatedHeartRate)
@@ -100,7 +100,7 @@ Next we use its position and rotation to place our camera:
 
 ```csharp
 /*
-    offsetFromTarget world is a constant that gives a natural
+    offsetFromTarget is a constant that gives a natural
     distance between the screen and the character.
 */
 void MoveToTarget() {
@@ -140,7 +140,7 @@ void Run() {
 		moveDirection = transform.TransformDirection (moveDirection);
 		moveDirection *= speed;
 		//We have to keep track of how long the player has been moving
-		//for our simulation - as the amount of time they've been running
+		//for our simulation, as the amount of time they've been running
 		//or resting will effect their heart rate.
 		if (timer.motion != true)
 			setTimer (timer, true);
@@ -169,7 +169,7 @@ void Run() {
 **Captors**
 
 
-Multiple environmental variables can contribute to the vitals of our character as displayed in this function which takes into consideration the character's level of elevation, hydration and heartRate to calculate their body temperature.
+Multiple environmental variables can contribute to the vitals of our character as displayed in this function which takes into consideration the character's level of elevation, hydration and heart rate to calculate their body temperature.
 
 ```csharp
 public float calcBodyTemp(float elevation, float hydration, float heartRate) {
@@ -181,7 +181,7 @@ public float calcBodyTemp(float elevation, float hydration, float heartRate) {
 	(double)elevation) * -.045f));
 }
 ```
-While this may seem like just a bunch of magic numbers, and ultimately they are, they do come from a method. We first defined the variables we wanted to take into consideration that would effect the body temperature and then plotted them onto a graph with x as time. With a lot of tinkering, The idea was to find a curve that would be manageable for the player to respond to the fluctuations in their character's vitals and the alerts they might raise.
+While this may seem like just a bunch of magic numbers, and ultimately they are, they do come from a method. We first defined the variables we wanted to take into consideration that would effect the body temperature and then plotted them onto a graph with x as time. With a lot of tinkering, we found curves that would be manageable for the player to respond to the fluctuations in their character's vitals and the alerts they might raise.
 
 
 ![Image](https://i.imgur.com/KEXRSy0.png)
