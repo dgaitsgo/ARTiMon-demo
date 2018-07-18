@@ -6,6 +6,7 @@ Partnership École42-STRATE-CEA
 
 
 Core team
+
 David Gaitsgory, Developer, dgaitsgory@student.42.fr
 Paul Gibert, Designer, p.denisgibert@strate.design
 Olivier Tousche, Designer, o.tousche@strate.design
@@ -13,6 +14,7 @@ Anaëlle Zouari, Developer, aazouari@student.42.fr
 
 
 Under the direction
+
 Aline Caranicolas, Industry Partnerships, aline.caranicolas@cea.fr
 David Mercier, Head of Innovation at LIST Institut de CEA Tech, david.mercier@cea.fr
 Nicolas Rapin, Researcher in Formal Methods, nicolas.rapin@cea.fr
