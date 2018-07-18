@@ -190,7 +190,7 @@ While this may seem like just a bunch of magic numbers, and ultimately they are,
 **Communication**
 
 
-In order to get data from the Unity game to our ARTiMon executable, we configured the wearable RaspberyPi to host a wifi network, connected the computer running the game to it and used tcp sockets to stream the data. When scripting in Unity with C#, we have access to .NET's Tcp API.
+In order to get data from the Unity game to our ARTiMon executable, we configured the wearable RaspberryPi to host a wifi network, connected the computer running the game to it and used tcp sockets to stream the data. When scripting in Unity with C#, we have access to .NET's Tcp API.
 
 
 
