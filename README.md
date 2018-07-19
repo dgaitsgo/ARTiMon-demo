@@ -10,7 +10,7 @@ Core team
 David Gaitsgory, Developer, dgaitsgory@student.42.fr
 Paul Gibert, Designer, pd.gibert@strate.design
 Olivier Tousche, Designer, o.tousche@strate.design
-Anaëlle Zouari, Developer, aazouari@student.42.fr
+Anaëlle Zouari, Developer, anzouari@student.42.fr
 
 
 Under the direction
