@@ -41,7 +41,7 @@ Our mission was to communicate to decision makers and the public the major steps
 
 
 ## Approach
-After the exploration of several prototypes, we decided that the most effective way to give a user who is not versed in a niche technical subject would be an interactive game where they play a soldier under distress and who must safely get to an extraction point while managing their vitals. Users are explained the rules they will have to follow and shown them expressed in ARTiMon to compare the similarity. The user has three points of interaction: a screen where a third-person character is in a dynamic environment, an arcade style joystick to control the character and toggle through menus, and a wearable technology that allows them to receive alerts from ARTiMon.
+After the exploration of several prototypes, we decided that the most effective way to give a user who is not versed in a niche technical subject would be an interactive game where they play a soldier under distress and who must safely get to an extraction point while managing their vitals. Users are explained the rules they will have to follow to complete the game and shown them as expressed in ARTiMon to compare their similarity. The user has three points of interaction: a screen where a third-person character is in a dynamic environment, an arcade style joystick to control the character and toggle through menus, and a wearable technology that allows them to receive alerts from ARTiMon.
 ## Stack
 
 
@@ -65,7 +65,7 @@ heartRateRange[2] heartRate maxHeartRate
 elevatedHeartRate = '>' heartRateRange
 
 *
-//Finally its time declare what alerts will be produced when exceeding
+//Finally it is time to declare what alerts will be produced when exceeding
 //certain thresholds. Alerts escalate in degree if the heartRate is
 //elevated for 3, 7 and 10 seconds. This is the monitoring stage.
 // hazards & warnings :green (default) - yellow, orange, red
@@ -111,7 +111,7 @@ void MoveToTarget() {
 ```
 
 
-Unity has a very flexible API that allows easy conversion between Euler angles and quaternions which should ultimately define transformations to avoid gimbal lock.
+Unity has a flexible API that allows easy conversion between Euler angles and quaternions which should ultimately define transformations to avoid gimbal lock.
 
 ```csharp
 void LookAtTarget() {
@@ -190,7 +190,7 @@ While this may seem like just a bunch of magic numbers, and ultimately they are,
 **Communication**
 
 
-In order to get data from the Unity game to our ARTiMon executable, we configured the wearable RaspberryPi to host a wifi network, connected the computer running the game to it and used tcp sockets to stream the data. When scripting in Unity with C#, we have access to .NET's Tcp API.
+In order to get data from the Unity game to our ARTiMon executable, we configured the wearable RaspberryPi to host a wifi network and then connected the computer running the game to that network. Now we can use tcp sockets to stream data. When scripting in Unity with C#, we have access to .NET's Tcp API.
 
 
 
