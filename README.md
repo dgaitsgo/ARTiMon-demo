@@ -33,7 +33,7 @@ As the world leader in patent filings amongst any public research organisation, 
 ![Image](https://i.imgur.com/7qg27fh.png)
 
 
-Monitoring the behavior in real-time of mission-critical systems is a complex task. It can dense codebases that are hard to test for dependable behavior. This is more often than not because languages are not designed to explicitly express temporality despite being a fundamental way humans conceive rules and constraints. ARTiMon shifts the field by offering a language where its primary operators are temporal.
+Monitoring the behavior in real-time of mission-critical systems is a complex task. It entails dense codebases that are hard to test for dependable behavior. This is more often than not because languages are not designed to explicitly express temporality despite being a fundamental way humans conceive rules and constraints. ARTiMon shifts the field by offering a language where its primary operators are temporal.
 
 
 ## Our Mission
