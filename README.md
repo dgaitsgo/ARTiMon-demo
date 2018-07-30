@@ -15,9 +15,9 @@ Anaëlle Zouari, Developer, anzouari@student.42.fr
 
 Under the direction
 
-Aline Caranicolas, Industry Partnerships, aline.caranicolas@cea.fr
-David Mercier, Head of Innovation at LIST Institute, CEA, david.mercier@cea.fr
-Nicolas Rapin, Researcher in Formal Methods, nicolas.rapin@cea.fr
+Aline Caranicolas, Industry Partnerships
+David Mercier, Head of Innovation at LIST Institute
+Nicolas Rapin, Researcher in Formal Methods
 
 
 ## Background
